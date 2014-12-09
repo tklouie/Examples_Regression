@@ -91,6 +91,7 @@ ttest bmi, by(sysbpcat03)
 /// MODEL BUILDING- Method 1: Forward selection model building ///
 
 // Add 1 adjusting covariate at a time to the model of systolic blood pressure in predicting coronary heart disease
+// P_entry = 0.1
 logistic anychd i.sysbpcat sex2 if keep == 1
 logistic anychd i.sysbpcat age50 if keep == 1
 logistic anychd i.sysbpcat bmi if keep == 1
@@ -158,6 +159,9 @@ logistic anychd i.sysbpcat sex2 age50 bmi intx_age50_bmi if keep == 1
 * Results: no evidence of effect modification between the chosen covariates
 
 /// MODEL BUILDING- Method 2: Backward elimination model building ///
+// P_remove = 0.11
+
+// Include all main effects of interest in model
 logistic anychd i.sysbpcat sex2 age50 i.totcholcat bmi heartrte if keep == 1
 estat gof, group(10)
 lroc, nograph
